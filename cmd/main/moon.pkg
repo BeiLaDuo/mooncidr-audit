@@ -1,5 +1,5 @@
 import {
-  "beiladuo/cidr-audit" @cidr,
+  "BeiLaDuo/cidr-audit" @cidr,
 }
 
 pkgtype(kind: "executable")

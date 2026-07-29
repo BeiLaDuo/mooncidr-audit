@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "beiladuo/cidr-audit"
+package "BeiLaDuo/cidr-audit"
 
 import {
   "moonbitlang/core/debug",

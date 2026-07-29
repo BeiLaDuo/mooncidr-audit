@@ -1,7 +1,7 @@
 // Learn more about moon.mod configuration:
 // https://docs.moonbitlang.com/en/latest/toolchain/moon/module.html
 
-name = "beiladuo/cidr-audit"
+name = "BeiLaDuo/cidr-audit"
 
 version = "0.1.0"
 

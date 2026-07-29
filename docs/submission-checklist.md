@@ -42,7 +42,7 @@
 
 ## 五、Mooncakes
 
-- [x] 软件包命名空间已设置为 `beiladuo/cidr-audit`。
+- [x] 软件包命名空间已设置为 `BeiLaDuo/cidr-audit`。
 - [ ] 确认当前 `moon login` 登录的是第二位参赛者对应的 Mooncakes 账号。
 - [ ] 按主办方要求将软件包发布至 Mooncakes。
 - [ ] 确认 Mooncakes 软件包页面可以公开访问。
