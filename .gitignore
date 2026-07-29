@@ -1,0 +1,6 @@
+_build/
+target/
+.moon/
+*.tmp
+*.log
+docs/*-preview.png

@@ -1,0 +1,429 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "beiladuo/cidr-audit"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn aggregate_blocks(Array[CidrBlock]) -> AggregationReport
+
+pub fn aggregate_cidr_strings(Array[String]) -> AggregationReport
+
+pub fn audit_rules(Array[Rule]) -> AuditReport
+
+pub fn audit_rules_with_policy(Array[Rule], AuditPolicy) -> AuditReport
+
+pub fn clip_ranges_to_block(CidrBlock, Array[AddressRange]) -> Array[AddressRange]
+
+pub fn diff_rule_sets(RuleSet, RuleSet) -> DiffReport
+
+pub fn import_csv_rules(Array[String]) -> ImportReport
+
+pub fn import_nginx_access(Array[String]) -> ImportReport
+
+pub fn import_plain_rules(Array[String]) -> ImportReport
+
+pub fn merge_address_ranges(Array[AddressRange]) -> Array[AddressRange]
+
+pub fn parse_rules(Array[String]) -> RuleSet
+
+pub fn ranges_from_blocks(Array[CidrBlock]) -> Array[AddressRange]
+
+pub fn uncovered_ranges(CidrBlock, Array[AddressRange]) -> Array[AddressRange]
+
+// Errors
+
+// Types and methods
+pub struct AddressRange {
+  first : IPv4
+  last : IPv4
+  source_count : Int
+} derive(Eq, @debug.Debug)
+pub fn AddressRange::address_count_label(Self) -> String
+pub fn AddressRange::contains_ip(Self, IPv4) -> Bool
+pub fn AddressRange::contains_range(Self, Self) -> Bool
+pub fn AddressRange::first(Self) -> IPv4
+pub fn AddressRange::from_block(CidrBlock) -> Self
+pub fn AddressRange::last(Self) -> IPv4
+pub fn AddressRange::merge(Self, Self) -> Result[Self, String]
+pub fn AddressRange::new(IPv4, IPv4, source_count? : Int) -> Result[Self, String]
+pub fn AddressRange::overlaps(Self, Self) -> Bool
+pub fn AddressRange::source_count(Self) -> Int
+pub fn AddressRange::summary(Self) -> String
+pub fn AddressRange::to_string(Self) -> String
+pub fn AddressRange::touches(Self, Self) -> Bool
+
+pub struct AggregationReport {
+  input_count : Int
+  valid_count : Int
+  duplicate_count : Int
+  contained_count : Int
+  merged_pair_count : Int
+  blocks : Array[CidrBlock]
+  errors : Array[String]
+} derive(@debug.Debug)
+pub fn AggregationReport::blocks(Self) -> Array[CidrBlock]
+pub fn AggregationReport::changed(Self) -> Bool
+pub fn AggregationReport::contained_count(Self) -> Int
+pub fn AggregationReport::duplicate_count(Self) -> Int
+pub fn AggregationReport::errors(Self) -> Array[String]
+pub fn AggregationReport::input_count(Self) -> Int
+pub fn AggregationReport::merged_pair_count(Self) -> Int
+pub fn AggregationReport::output_count(Self) -> Int
+pub fn AggregationReport::reduction_count(Self) -> Int
+pub fn AggregationReport::summary(Self) -> String
+pub fn AggregationReport::text_report(Self) -> String
+pub fn AggregationReport::valid_count(Self) -> Int
+
+pub struct AuditPolicy {
+  wide_allow_prefix : Int
+  flag_private : Bool
+  flag_special_ranges : Bool
+  flag_non_canonical : Bool
+  flag_redundant_overlap : Bool
+} derive(Eq, @debug.Debug)
+pub fn AuditPolicy::flag_non_canonical(Self) -> Bool
+pub fn AuditPolicy::flag_private(Self) -> Bool
+pub fn AuditPolicy::flag_redundant_overlap(Self) -> Bool
+pub fn AuditPolicy::flag_special_ranges(Self) -> Bool
+pub fn AuditPolicy::gateway() -> Self
+pub fn AuditPolicy::quiet() -> Self
+pub fn AuditPolicy::strict() -> Self
+pub fn AuditPolicy::wide_allow_prefix(Self) -> Int
+
+pub struct AuditReport {
+  rules : Array[Rule]
+  findings : Array[Finding]
+  parse_errors : Array[String]
+} derive(@debug.Debug)
+pub fn AuditReport::count_hint_kind(Self, HintKind) -> Int
+pub fn AuditReport::count_kind(Self, FindingKind) -> Int
+pub fn AuditReport::count_severity(Self, Severity) -> Int
+pub fn AuditReport::critical_count(Self) -> Int
+pub fn AuditReport::evaluate_gate(Self, GatePolicy) -> GateResult
+pub fn AuditReport::finding_count(Self) -> Int
+pub fn AuditReport::findings(Self) -> Array[Finding]
+pub fn AuditReport::fix_hints(Self) -> Array[FixHint]
+pub fn AuditReport::hint_report(Self) -> String
+pub fn AuditReport::info_count(Self) -> Int
+pub fn AuditReport::json_report(Self) -> String
+pub fn AuditReport::parse_errors(Self) -> Array[String]
+pub fn AuditReport::recommended_action(Self) -> String
+pub fn AuditReport::risk_level(Self) -> String
+pub fn AuditReport::risk_score(Self) -> Int
+pub fn AuditReport::rules(Self) -> Array[Rule]
+pub fn AuditReport::summary_table(Self) -> String
+pub fn AuditReport::text_report(Self) -> String
+pub fn AuditReport::warning_count(Self) -> Int
+
+pub struct CidrBlock {
+  network : IPv4
+  prefix : Int
+} derive(Eq, @debug.Debug)
+pub fn CidrBlock::broadcast(Self) -> IPv4
+pub fn CidrBlock::contains_block(Self, Self) -> Bool
+pub fn CidrBlock::contains_ip(Self, IPv4) -> Bool
+pub fn CidrBlock::equal_range(Self, Self) -> Bool
+pub fn CidrBlock::has_host_bits(String) -> Bool
+pub fn CidrBlock::network(Self) -> IPv4
+pub fn CidrBlock::new(IPv4, Int) -> Result[Self, String]
+pub fn CidrBlock::new_unchecked(IPv4, Int) -> Self
+pub fn CidrBlock::overlaps(Self, Self) -> Bool
+pub fn CidrBlock::parse(String) -> Result[Self, String]
+pub fn CidrBlock::parse_raw(String) -> Result[(IPv4, Int), String]
+pub fn CidrBlock::prefix(Self) -> Int
+pub fn CidrBlock::size_label(Self) -> String
+pub fn CidrBlock::to_string(Self) -> String
+
+pub struct CoverageStats {
+  total_rules : Int
+  allow_rules : Int
+  deny_rules : Int
+  private_rules : Int
+  public_rules : Int
+  special_rules : Int
+  widest_prefix : Int
+  narrowest_prefix : Int
+} derive(Eq, @debug.Debug)
+pub fn CoverageStats::allow_rules(Self) -> Int
+pub fn CoverageStats::deny_rules(Self) -> Int
+pub fn CoverageStats::narrowest_prefix(Self) -> Int
+pub fn CoverageStats::private_rules(Self) -> Int
+pub fn CoverageStats::public_rules(Self) -> Int
+pub fn CoverageStats::special_rules(Self) -> Int
+pub fn CoverageStats::summary(Self) -> String
+pub fn CoverageStats::total_rules(Self) -> Int
+pub fn CoverageStats::widest_prefix(Self) -> Int
+
+pub struct Decision {
+  matched : Bool
+  action : RuleAction
+  rule_id : String
+  block : String
+} derive(Eq, @debug.Debug)
+pub fn Decision::action(Self) -> RuleAction
+pub fn Decision::block(Self) -> String
+pub fn Decision::matched(Self) -> Bool
+pub fn Decision::rule_id(Self) -> String
+pub fn Decision::summary(Self) -> String
+
+pub struct DiffReport {
+  changes : Array[RuleChange]
+} derive(@debug.Debug)
+pub fn DiffReport::change_count(Self) -> Int
+pub fn DiffReport::changes(Self) -> Array[RuleChange]
+pub fn DiffReport::count_kind(Self, RuleChangeKind) -> Int
+pub fn DiffReport::is_empty(Self) -> Bool
+pub fn DiffReport::risk_level(Self) -> String
+pub fn DiffReport::risky_count(Self) -> Int
+pub fn DiffReport::text_report(Self) -> String
+
+pub struct Finding {
+  kind : FindingKind
+  severity : Severity
+  rule_id : String
+  related_rule_id : String
+  message : String
+} derive(Eq, @debug.Debug)
+pub fn Finding::kind(Self) -> FindingKind
+pub fn Finding::message(Self) -> String
+pub fn Finding::new(FindingKind, Severity, String, String, related_rule_id? : String) -> Self
+pub fn Finding::related_rule_id(Self) -> String
+pub fn Finding::rule_id(Self) -> String
+pub fn Finding::severity(Self) -> Severity
+
+pub(all) enum FindingKind {
+  DuplicateRule
+  ShadowedRule
+  ConflictingOverlap
+  RedundantOverlap
+  TooWideAllow
+  GlobalDeny
+  PrivateRange
+  LoopbackRange
+  LinkLocalRange
+  MulticastRange
+  NonCanonicalCidr
+  ParseError
+} derive(Eq, @debug.Debug)
+pub fn FindingKind::label(Self) -> String
+
+pub struct FixHint {
+  kind : HintKind
+  severity : Severity
+  rule_id : String
+  text : String
+} derive(Eq, @debug.Debug)
+pub fn FixHint::kind(Self) -> HintKind
+pub fn FixHint::new(HintKind, Severity, String, String) -> Self
+pub fn FixHint::rule_id(Self) -> String
+pub fn FixHint::severity(Self) -> Severity
+pub fn FixHint::summary(Self) -> String
+pub fn FixHint::text(Self) -> String
+
+pub struct GatePolicy {
+  name : String
+  max_critical : Int
+  max_warning : Int
+  max_risk_score : Int
+  allow_parse_errors : Bool
+} derive(Eq, @debug.Debug)
+pub fn GatePolicy::allow_parse_errors(Self) -> Bool
+pub fn GatePolicy::development() -> Self
+pub fn GatePolicy::max_critical(Self) -> Int
+pub fn GatePolicy::max_risk_score(Self) -> Int
+pub fn GatePolicy::max_warning(Self) -> Int
+pub fn GatePolicy::name(Self) -> String
+pub fn GatePolicy::new(String, Int, Int, Int, allow_parse_errors? : Bool) -> Result[Self, String]
+pub fn GatePolicy::release() -> Self
+pub fn GatePolicy::review() -> Self
+pub fn GatePolicy::summary(Self) -> String
+
+pub struct GateReason {
+  code : String
+  actual : Int
+  limit : Int
+  message : String
+} derive(Eq, @debug.Debug)
+pub fn GateReason::actual(Self) -> Int
+pub fn GateReason::code(Self) -> String
+pub fn GateReason::limit(Self) -> Int
+pub fn GateReason::message(Self) -> String
+pub fn GateReason::new(String, Int, Int, String) -> Self
+pub fn GateReason::summary(Self) -> String
+
+pub struct GateResult {
+  policy : GatePolicy
+  passed : Bool
+  risk_score : Int
+  reasons : Array[GateReason]
+} derive(@debug.Debug)
+pub fn GateResult::decision(Self) -> String
+pub fn GateResult::has_reason(Self, String) -> Bool
+pub fn GateResult::passed(Self) -> Bool
+pub fn GateResult::policy(Self) -> GatePolicy
+pub fn GateResult::reason_count(Self) -> Int
+pub fn GateResult::reasons(Self) -> Array[GateReason]
+pub fn GateResult::risk_score(Self) -> Int
+pub fn GateResult::text_report(Self) -> String
+
+pub(all) enum HintKind {
+  MoveSpecificRule
+  TightenCidr
+  ConfirmDefaultPolicy
+  CanonicalizeInput
+  RemoveDuplicate
+  ReviewSpecialScope
+  FixSyntax
+  ReviewOverlap
+} derive(Eq, @debug.Debug)
+pub fn HintKind::label(Self) -> String
+
+pub struct IPv4 {
+  value : UInt
+} derive(Eq, @debug.Debug)
+pub fn IPv4::is_limited_broadcast(Self) -> Bool
+pub fn IPv4::is_link_local(Self) -> Bool
+pub fn IPv4::is_loopback(Self) -> Bool
+pub fn IPv4::is_multicast(Self) -> Bool
+pub fn IPv4::is_private(Self) -> Bool
+pub fn IPv4::is_unspecified(Self) -> Bool
+pub fn IPv4::new(UInt) -> Self
+pub fn IPv4::parse(String) -> Result[Self, String]
+pub fn IPv4::scope_label(Self) -> String
+pub fn IPv4::to_dotted(Self) -> String
+pub fn IPv4::value(Self) -> UInt
+
+pub(all) enum ImportFormat {
+  PlainRules
+  NginxAccess
+  CsvRules
+} derive(Eq, @debug.Debug)
+pub fn ImportFormat::label(Self) -> String
+
+pub struct ImportIssue {
+  line : Int
+  level : ImportIssueLevel
+  code : String
+  message : String
+  input : String
+} derive(Eq, @debug.Debug)
+pub fn ImportIssue::code(Self) -> String
+pub fn ImportIssue::input(Self) -> String
+pub fn ImportIssue::level(Self) -> ImportIssueLevel
+pub fn ImportIssue::line(Self) -> Int
+pub fn ImportIssue::message(Self) -> String
+pub fn ImportIssue::new(Int, ImportIssueLevel, String, String, String) -> Self
+pub fn ImportIssue::summary(Self) -> String
+
+pub(all) enum ImportIssueLevel {
+  ImportWarning
+  ImportError
+} derive(Eq, @debug.Debug)
+pub fn ImportIssueLevel::label(Self) -> String
+
+pub struct ImportReport {
+  format : ImportFormat
+  source_count : Int
+  rules : Array[Rule]
+  issues : Array[ImportIssue]
+} derive(@debug.Debug)
+pub fn ImportReport::accepted_count(Self) -> Int
+pub fn ImportReport::can_audit(Self) -> Bool
+pub fn ImportReport::error_count(Self) -> Int
+pub fn ImportReport::format(Self) -> ImportFormat
+pub fn ImportReport::is_clean(Self) -> Bool
+pub fn ImportReport::issues(Self) -> Array[ImportIssue]
+pub fn ImportReport::rules(Self) -> Array[Rule]
+pub fn ImportReport::source_count(Self) -> Int
+pub fn ImportReport::summary(Self) -> String
+pub fn ImportReport::text_report(Self) -> String
+pub fn ImportReport::to_ruleset(Self) -> RuleSet
+pub fn ImportReport::warning_count(Self) -> Int
+
+pub struct Rule {
+  id : String
+  action : RuleAction
+  block : CidrBlock
+  source_block : String
+  note : String
+} derive(Eq, @debug.Debug)
+pub fn Rule::action(Self) -> RuleAction
+pub fn Rule::block(Self) -> CidrBlock
+pub fn Rule::id(Self) -> String
+pub fn Rule::is_canonical(Self) -> Bool
+pub fn Rule::matches(Self, IPv4) -> Bool
+pub fn Rule::new(String, RuleAction, CidrBlock, source_block? : String, note? : String) -> Self
+pub fn Rule::note(Self) -> String
+pub fn Rule::parse(String, String) -> Result[Self, String]
+pub fn Rule::same_decision(Self, Self) -> Bool
+pub fn Rule::source_block(Self) -> String
+pub fn Rule::summary(Self) -> String
+
+pub(all) enum RuleAction {
+  Allow
+  Deny
+} derive(Eq, @debug.Debug)
+pub fn RuleAction::label(Self) -> String
+pub fn RuleAction::parse(String) -> Result[Self, String]
+
+pub struct RuleChange {
+  kind : RuleChangeKind
+  before_id : String
+  after_id : String
+  block : String
+  message : String
+} derive(Eq, @debug.Debug)
+pub fn RuleChange::after_id(Self) -> String
+pub fn RuleChange::before_id(Self) -> String
+pub fn RuleChange::block(Self) -> String
+pub fn RuleChange::kind(Self) -> RuleChangeKind
+pub fn RuleChange::message(Self) -> String
+pub fn RuleChange::new(RuleChangeKind, String, String, String, String) -> Self
+pub fn RuleChange::summary(Self) -> String
+
+pub(all) enum RuleChangeKind {
+  AddedRule
+  RemovedRule
+  ActionChanged
+  NoteChanged
+  UnchangedRule
+} derive(Eq, @debug.Debug)
+pub fn RuleChangeKind::is_risky(Self) -> Bool
+pub fn RuleChangeKind::label(Self) -> String
+
+pub struct RuleSet {
+  rules : Array[Rule]
+  parse_errors : Array[String]
+} derive(@debug.Debug)
+pub fn RuleSet::audit(Self) -> AuditReport
+pub fn RuleSet::audit_with_policy(Self, AuditPolicy) -> AuditReport
+pub fn RuleSet::coverage_ranges(Self, RuleAction) -> Array[AddressRange]
+pub fn RuleSet::coverage_report(Self, RuleAction, CidrBlock) -> String
+pub fn RuleSet::coverage_stats(Self) -> CoverageStats
+pub fn RuleSet::decide(Self, IPv4) -> Decision
+pub fn RuleSet::diff_from(Self, Self) -> DiffReport
+pub fn RuleSet::evaluate_gate(Self, AuditPolicy, GatePolicy) -> GateResult
+pub fn RuleSet::explain_ip(Self, IPv4) -> String
+pub fn RuleSet::explain_many(Self, Array[String]) -> String
+pub fn RuleSet::first_rule_for_block(Self, CidrBlock) -> String
+pub fn RuleSet::from_lines(Array[String]) -> Self
+pub fn RuleSet::inventory_report(Self) -> String
+pub fn RuleSet::matching_rules(Self, IPv4) -> Array[Rule]
+pub fn RuleSet::new(Array[Rule]) -> Self
+pub fn RuleSet::parse_errors(Self) -> Array[String]
+pub fn RuleSet::rules(Self) -> Array[Rule]
+
+pub(all) enum Severity {
+  Info
+  Warning
+  Critical
+} derive(Eq, @debug.Debug)
+pub fn Severity::label(Self) -> String
+pub fn Severity::score(Self) -> Int
+
+// Type aliases
+
+// Traits
+

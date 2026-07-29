@@ -1,0 +1,5 @@
+import {
+  "beiladuo/cidr-audit" @cidr,
+}
+
+pkgtype(kind: "executable")
