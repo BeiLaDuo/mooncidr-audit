@@ -138,6 +138,14 @@ sets before they are deployed. This is useful for configuration review, CI
 checks, teaching network rule behavior, and building safer MoonBit developer
 tools.
 
+## Submission Materials
+
+- One-page application: `docs/submission-application-one-page.md`
+- Full application notes: `docs/submission-application.md`
+- PDF application copy: `docs/submission-application.pdf`
+- Novelty review: `docs/novelty-review.md`
+- Submission checklist: `docs/submission-checklist.md`
+
 ## License
 
 Apache-2.0.

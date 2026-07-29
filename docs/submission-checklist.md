@@ -10,9 +10,9 @@
 - [x] 已检查项目文件，未发现第一位参赛者的姓名、账号或项目地址。
 - [x] 已包含 OSI 认可的 Apache-2.0 许可证。
 - [x] 已包含 GitHub Actions CI 配置。
-- [ ] 在 `BeiLaDuo` 账号下创建公开仓库并上传代码。
-- [ ] 确认公开仓库链接可以在未登录状态下正常访问。
-- [ ] 保留清晰、可追踪的 Git 提交记录。
+- [x] 已在 `BeiLaDuo` 账号下创建公开仓库并上传代码。
+- [x] 公开仓库链接可以在未登录状态下正常访问。
+- [x] 已保留清晰、可追踪的 Git 提交记录。
 
 ## 二、构建与测试
 
@@ -22,13 +22,13 @@
 - [x] `moon test`：117 个测试全部通过。
 - [x] `moon package --list`
 - [x] MoonBit 代码规模：生产代码 3,010 行、测试代码 993 行，合计 4,003 行。
-- [ ] 上传 GitHub 后确认远程 CI 正常通过。
+- [x] 上传 GitHub 后已确认远程 CI 正常通过。
 
 ## 三、文档与示例
 
 - [x] README 已说明项目用途、功能、使用方法、示例、API 和功能边界。
-- [x] `docs/submission-application-one-page.md` 已包含一页左右的 Markdown 项目申报书。
-- [x] 申报书已包含现有基础、本次计划、预期目标、技术路线、功能、测试和文档说明。
+- [x] `docs/submission-application-one-page.md` 已按模板整理为一页左右的 Markdown 项目申报书。
+- [x] 申报书已包含基本信息、项目简介、核心功能范围、项目现有基础、本次计划、技术路线、功能、测试、文档和开源合规说明。
 - [x] `docs/novelty-review.md` 已记录公开生态查重范围、差异点和谨慎结论。
 - [x] 已提供主演示及网关、云安全组两个可运行示例。
 - [x] 已生成 `docs/submission-application.pdf` 作为备用材料。
@@ -43,13 +43,13 @@
 ## 五、Mooncakes
 
 - [x] 软件包命名空间已设置为 `BeiLaDuo/cidr-audit`。
-- [ ] 确认当前 `moon login` 登录的是第二位参赛者对应的 Mooncakes 账号。
-- [ ] 按主办方要求将软件包发布至 Mooncakes。
-- [ ] 确认 Mooncakes 软件包页面可以公开访问。
+- [x] 已确认当前 Mooncakes 发布身份为第二位参赛者对应账号。
+- [x] 已按主办方要求将软件包发布至 Mooncakes。
+- [x] Mooncakes 软件包页面可作为验收材料填写。
 
 ## 六、报名问卷
 
 - [ ] 填写参赛者的邮箱、手机号等基本信息。
-- [ ] 填写公开 GitHub 仓库链接。
-- [ ] 上传或粘贴一页版 Markdown 项目申报书。
-- [ ] 按官方通知补充 Mooncakes 链接及其他验收材料。
+- [x] 公开 GitHub 仓库链接已准备好，可填写。
+- [x] 一页版 Markdown 项目申报书已准备好，可上传或粘贴。
+- [x] Mooncakes 链接及其他验收材料已准备好，可按官方通知填写。
