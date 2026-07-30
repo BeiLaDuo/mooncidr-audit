@@ -98,3 +98,12 @@ test "IPv4 round trips unsigned maximum" {
   inspect(ip.to_dotted(), content="255.255.255.255")
   inspect(ip.value(), content="4294967295")
 }
+
+///|
+test "IPv4 identifies public addresses" {
+  inspect(IPv4::parse("8.8.8.8").unwrap().is_public(), content="true")
+  inspect(IPv4::parse("1.1.1.1").unwrap().is_public(), content="true")
+  inspect(IPv4::parse("192.168.1.1").unwrap().is_public(), content="false")
+  inspect(IPv4::parse("127.0.0.1").unwrap().is_public(), content="false")
+  inspect(IPv4::parse("224.0.0.1").unwrap().is_public(), content="false")
+}

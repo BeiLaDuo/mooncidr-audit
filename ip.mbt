@@ -104,6 +104,18 @@ pub fn IPv4::is_limited_broadcast(self : IPv4) -> Bool {
 }
 
 ///|
+/// Returns true when the address is not one of the private or special scopes
+/// currently recognized by this package.
+pub fn IPv4::is_public(self : IPv4) -> Bool {
+  !self.is_unspecified() &&
+  !self.is_limited_broadcast() &&
+  !self.is_loopback() &&
+  !self.is_private() &&
+  !self.is_link_local() &&
+  !self.is_multicast()
+}
+
+///|
 pub fn IPv4::scope_label(self : IPv4) -> String {
   if self.is_unspecified() {
     "unspecified"
