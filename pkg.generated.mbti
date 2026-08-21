@@ -288,6 +288,7 @@ pub fn IPv4::is_link_local(Self) -> Bool
 pub fn IPv4::is_loopback(Self) -> Bool
 pub fn IPv4::is_multicast(Self) -> Bool
 pub fn IPv4::is_private(Self) -> Bool
+pub fn IPv4::is_public(Self) -> Bool
 pub fn IPv4::is_unspecified(Self) -> Bool
 pub fn IPv4::new(UInt) -> Self
 pub fn IPv4::parse(String) -> Result[Self, String]
@@ -426,4 +427,3 @@ pub fn Severity::score(Self) -> Int
 // Type aliases
 
 // Traits
-

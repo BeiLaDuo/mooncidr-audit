@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.2
+
+- Verified 118 tests on the wasm, wasm-gc, JavaScript, and native targets with
+  MoonBit 0.1.20260819.
+- Regenerated the public package interface so `IPv4::is_public()` is included.
+- Updated CI and final-submission materials to match the verified release.
+
 ## 0.1.0
 
 - Added IPv4 parser and dotted decimal rendering.

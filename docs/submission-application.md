@@ -32,7 +32,7 @@ MoonCIDR Audit 是一个使用 MoonBit 实现的 IPv4/CIDR 规则审计库，面
 
 ## 项目现有基础
 
-项目已经形成可构建、可测试、可发布的 MoonBit 仓库。当前有效 MoonBit 代码约 4,003 行，其中生产代码 3,010 行、测试代码 993 行；已有 117 个测试，覆盖解析、CIDR 计算、规则匹配、审计策略、规则变更、修复建议、区间覆盖、网段聚合、配置导入、报告输出和发布门禁。项目已配置公开 GitHub 仓库、GitHub Actions CI、Apache-2.0 许可证、README、示例工程和 Mooncakes 包发布信息，可通过 `moon check`、`moon build`、`moon test` 和 `moon package --list` 复验。
+项目已经形成可构建、可测试、可发布的 MoonBit 仓库。当前有效 MoonBit 代码共 4,022 行，其中生产代码 3,021 行、测试代码 1,001 行；已有 118 项测试，覆盖解析、CIDR 计算、规则匹配、审计策略、规则变更、修复建议、区间覆盖、网段聚合、配置导入、报告输出和发布门禁，并已在 wasm、wasm-gc、JavaScript、native 四个目标全部通过。项目已配置公开 GitHub 仓库、GitHub Actions CI、Apache-2.0 许可证、README、示例工程和 Mooncakes 包发布信息，可通过 `moon check --target all --deny-warn`、`moon build --target all`、`moon test --target all --deny-warn` 和 `moon package --list` 复验。
 
 当前已实现的主要模块包括：
 

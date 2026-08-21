@@ -51,8 +51,8 @@ Run checks:
 
 ```powershell
 moon check
-moon build
-moon test
+moon build --target all
+moon test --target all --deny-warn
 ```
 
 ## Basic Usage

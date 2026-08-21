@@ -1,6 +1,6 @@
 # 提交前检查清单
 
-最后核对日期：2026 年 7 月 29 日。
+最后核对日期：2026 年 8 月 21 日。
 
 ## 一、代码仓库
 
@@ -17,11 +17,11 @@
 ## 二、构建与测试
 
 - [x] `moon info`
-- [x] `moon check`
-- [x] `moon build`
-- [x] `moon test`：117 个测试全部通过。
+- [x] `moon check --target all --deny-warn`
+- [x] `moon build --target all`
+- [x] `moon test --target all --deny-warn`：118 项测试在 wasm、wasm-gc、JavaScript、native 四个目标全部通过。
 - [x] `moon package --list`
-- [x] MoonBit 代码规模：生产代码 3,010 行、测试代码 993 行，合计 4,003 行。
+- [x] MoonBit 代码规模：生产代码 3,021 行、测试代码 1,001 行，合计 4,022 行。
 - [x] 上传 GitHub 后已确认远程 CI 正常通过。
 
 ## 三、文档与示例
